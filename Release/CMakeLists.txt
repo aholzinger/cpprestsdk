@@ -137,6 +137,10 @@ elseif(WIN32)
     set(TEST_LIBRARY_TARGET_TYPE OBJECT)
   endif()
 
+  if(BOOST_SYSTEM_USE_UTF8)
+    add_definitions(-DBOOST_SYSTEM_USE_UTF8)
+  endif()
+
   add_definitions(-D_WINSOCK_DEPRECATED_NO_WARNINGS)
 else()
   message(FATAL_ERROR "-- Unsupported Build Platform.")
