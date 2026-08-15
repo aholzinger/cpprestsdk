@@ -26,6 +26,9 @@ Set following entry in the hosts file:
 127.0.0.1    testhost.local
 
 */
+#if defined(_WIN32) && defined(CPPREST_FORCE_HTTP_LISTENER_ASIO)
+#include <winsock2.h>
+#endif
 #include "cpprest/http_client.h"
 #include <mutex>
 
