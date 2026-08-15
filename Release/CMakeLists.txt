@@ -1,7 +1,10 @@
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.15)
 if(POLICY CMP0042)
   cmake_policy(SET CMP0042 NEW) # use MACOSX_RPATH
+endif()
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.30.0") 
+  cmake_policy(SET CMP0167 OLD) # because websocketpp searches for Boost the old way
 endif()
 if(UNIX)
   project(cpprestsdk C CXX)
