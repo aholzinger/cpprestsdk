@@ -142,6 +142,14 @@ elseif(WIN32)
   endif()
 
   add_definitions(-D_WINSOCK_DEPRECATED_NO_WARNINGS)
+  if(CPPREST_STATIC_RUNTIME)
+    # use OpenSSL with static runtime
+    set(OPENSSL_MSVC_STATIC_RT)
+    # in this case we also use OpenSSL static libraries, because we want a fat binary
+    set(OPENSSL_USE_STATIC_LIBS)
+    # use the modern CMake way to select static runtime on Windows (therefore we need CMake 3.15)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>)
+  endif()
 else()
   message(FATAL_ERROR "-- Unsupported Build Platform.")
 endif()
